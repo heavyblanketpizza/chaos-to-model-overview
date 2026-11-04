@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:05.000
+Chaos-to-Model
+12 real documents. Korean scans. English and French books. One local workspace.
+
+2
+00:00:05.000 --> 00:00:12.000
+Read the page. Keep the structure.
+59 pages escalated. 24 still need review. Uncertainty stays visible.
+
+3
+00:00:12.000 --> 00:00:20.000
+Every table has a way back.
+Select a result. Follow it back to the page that produced it.
+
+4
+00:00:20.000 --> 00:00:31.000
+A scan changes the outcome.
+Curator used a pypdfium2 text-layer fallback; GPU Nemotron-Parse was not run.
+
+5
+00:00:31.000 --> 00:00:40.000
+Keep the original language.
+Hangul character counts, not OCR accuracy. Unsloth used its default English OCR.
+
+6
+00:00:40.000 --> 00:00:47.000
+Clean text? Near-identical overlap.
+Overlap with C2M's normalized 5-character shingles; C2M is not ground truth.
+
+7
+00:00:47.000 --> 00:00:55.000
+From parsed text to training sets.
+Research profile: unknown rights allowed; unresolved pages excluded; judge uncalibrated.
+
+8
+00:00:55.000 --> 00:01:00.000
+Make every training row accountable.
+Captured local results. Edited two-minute TUI walkthrough, played at 2x.

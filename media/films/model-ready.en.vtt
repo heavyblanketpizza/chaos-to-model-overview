@@ -1,0 +1,41 @@
+WEBVTT
+
+1
+00:00:00.300 --> 00:00:03.450
+Chaos-to-Model. Follow one number.
+
+2
+00:00:03.680 --> 00:00:07.700
+The guide lists two hundred and forty-seven hectares of roses.
+
+3
+00:00:08.610 --> 00:00:13.650
+Press P to parse the two-page scan.
+
+4
+00:00:16.940 --> 00:00:21.900
+Open the table. Two forty-seven, still in the twenty nineteen column.
+
+5
+00:00:22.350 --> 00:00:28.050
+Unsloth refuses the guide. Our NeMo fallback reads just three hundred and nine characters.
+
+6
+00:00:28.330 --> 00:00:33.100
+Over four thousand Korean characters on those scans, against Unsloth's hundred and sixty-two.
+
+7
+00:00:33.350 --> 00:00:38.320
+Across eight guides, Chaos-to-Model keeps over two thousand more table rows than Unsloth.
+
+8
+00:00:38.530 --> 00:00:42.980
+This training answer links back to page three hundred and one.
+
+9
+00:00:43.360 --> 00:00:47.780
+Verify the export. All seventeen files check out.
+
+10
+00:00:48.430 --> 00:00:54.980
+The goal is model-ready datasets for pretraining, instruction tuning, and steering.

@@ -1,0 +1,94 @@
+{
+ "description": "Question-answer and rephrase sets each pipeline generated from the same files with the same local teacher model.",
+ "teacher": "mlx-community/Qwen3.8-27B-4bit",
+ "qa": {
+  "c2m": {
+   "rows": 377,
+   "by_split": {
+    "test": 27,
+    "train": 327,
+    "validation": 23
+   },
+   "abstain_rows": 35,
+   "short_rows": 140,
+   "works": 12,
+   "question_in_passage_language": 1.0,
+   "extractive": 0.094,
+   "numbers_grounded": 1.0,
+   "unique_questions": 1.0,
+   "quote_in_chunk": null,
+   "question_chars": 67.7,
+   "answer_chars": 113.6,
+   "passage_chars": 1684.4
+  },
+  "unsloth": {
+   "rows": 216,
+   "by_split": {
+    "train": 187,
+    "validation": 14,
+    "test": 15
+   },
+   "abstain_rows": 0,
+   "short_rows": 0,
+   "works": 11,
+   "question_in_passage_language": 0.926,
+   "extractive": 0.292,
+   "numbers_grounded": 1.0,
+   "unique_questions": 0.991,
+   "quote_in_chunk": 0.968,
+   "question_chars": 70.5,
+   "answer_chars": 61.0,
+   "passage_chars": 1065.3
+  },
+  "curator": {
+   "rows": 1396,
+   "by_split": {
+    "train": 1094,
+    "test": 198,
+    "validation": 104
+   },
+   "abstain_rows": 0,
+   "short_rows": 0,
+   "works": 11,
+   "question_in_passage_language": 0.297,
+   "extractive": 0.07,
+   "numbers_grounded": 0.986,
+   "unique_questions": 0.999,
+   "quote_in_chunk": null,
+   "question_chars": 95.5,
+   "answer_chars": 81.2,
+   "passage_chars": 1169.1
+  }
+ },
+ "rephrase": {
+  "c2m": {
+   "rows": 43,
+   "by_split": {
+    "train": 37,
+    "test": 3,
+    "validation": 3
+   },
+   "output_in_source_language": 1.0,
+   "output_languages": {
+    "latin": 17,
+    "ko": 26
+   },
+   "length_ratio": 1.1,
+   "numbers_kept": 0.89
+  },
+  "curator": {
+   "rows": 46,
+   "by_split": {
+    "train": 35,
+    "test": 9,
+    "validation": 2
+   },
+   "output_in_source_language": 0.391,
+   "output_languages": {
+    "latin": 46
+   },
+   "length_ratio": 2.03,
+   "numbers_kept": 0.571
+  }
+ }
+}

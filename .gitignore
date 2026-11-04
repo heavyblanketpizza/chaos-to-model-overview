@@ -1,0 +1,25 @@
+# Build output and local tooling
+.DS_Store
+_site/
+.preview/
+tools/node_modules/
+tools/fonts/
+
+# Never commit secrets, local config, logs or source material
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.sig
+*.sqlite
+*.db
+*.log
+*.toml
+*.lock
+!tools/package-lock.json
+raw/
+exports/
+objects/
+tables/
+proxy/

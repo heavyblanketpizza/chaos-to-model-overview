@@ -1,0 +1,13 @@
+measure,unit,better,c2m,unsloth,curator,scope
+"Scanned rose guide, characters extracted",characters,context,203577,refused,309,"1 scanned PDF, 310 pages"
+Hangul on the pages Unsloth sends to OCR,characters,higher,4337,162,162,28 scanned pages
+Table rows kept,count,higher,6727,4622,0,8 Korean PDFs
+Page-number lines left in text,count,lower,164,1112,1734,8 Korean PDFs
+"Words broken across lines, per 1,000 Hangul",rate,lower,0.0,0.0,25.7,8 Korean PDFs
+Unicode replacement characters,count,lower,0,0,422,8 Korean PDFs
+Questions in the passage's language,share,higher,1.0,0.926,0.297,QA sets
+Works with at least one QA row (of 12),count,higher,12,11,11,QA sets
+Abstention rows,count,higher,35,0,0,QA sets
+Student reply contains the answer (primary),mean,higher,0.6407,0.6108,0.6168,"167 held-out questions, 10 works; untuned floor 0.7425"
+Student reply exactly matches the answer,mean,higher,0.4671,0.4371,0.4192,"167 held-out questions, 10 works; untuned floor 0.2754"
+"Log-likelihood of the answer, nats per character",mean,higher,-0.4079,-0.5288,-0.2417,"167 held-out questions, 10 works; untuned floor -1.0539"

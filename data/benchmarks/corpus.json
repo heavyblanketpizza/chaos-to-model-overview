@@ -1,0 +1,125 @@
+{
+ "description": "The 12 source files every pipeline read. Eight Korean agricultural guides published by Korea's Rural Development Administration (RDA) and four Project Gutenberg ebooks.",
+ "files": [
+  {
+   "sha256": "649705b11c490a8212c6815d57b614804530724ea6557b3a6693a4f9eaa62a87",
+   "file": "2023농업기술길잡이_과수시설재배_단면.pdf",
+   "title": "Greenhouse fruit growing",
+   "source": "2023 농업기술길잡이 과수시설재배",
+   "language": "ko",
+   "format": "pdf",
+   "text": "text layer"
+  },
+  {
+   "sha256": "ddf21ce3df6f89710114b95dd7b9780d601fb38f61543116c6cda17a35ceb45d",
+   "file": "2023농업기술길잡이_생활속텃밭정원_단면.pdf",
+   "title": "Home kitchen gardens",
+   "source": "2023 농업기술길잡이 생활속 텃밭정원",
+   "language": "ko",
+   "format": "pdf",
+   "text": "text layer"
+  },
+  {
+   "sha256": "a95583eb31e3b59fc0dc9b94fc0385b190a147788fc3f9d1d76f6093b20c9c68",
+   "file": "2023농업기술길잡이_화분매개곤충 벌_단면.pdf",
+   "title": "Pollinating bees",
+   "source": "2023 농업기술길잡이 화분매개곤충 벌",
+   "language": "ko",
+   "format": "pdf",
+   "text": "text layer"
+  },
+  {
+   "sha256": "70a46a767fd4cadd2b5b3a9470bb0b6cb4677742e7dfea2c0ef7d6b023ff1c7f",
+   "file": "29 토마토_저화질_단면.pdf",
+   "title": "Tomato (low-resolution copy)",
+   "source": "농업기술길잡이 29 토마토",
+   "language": "ko",
+   "format": "pdf",
+   "text": "text layer"
+  },
+  {
+   "sha256": "f8beadcf09130276b801f2551492642042443da34815643112ef8a18c58eb60f",
+   "file": "3 양봉_부분 수정(완).pdf",
+   "title": "Beekeeping",
+   "source": "농업기술길잡이 양봉",
+   "language": "ko",
+   "format": "pdf",
+   "text": "text layer"
+  },
+  {
+   "sha256": "6a5066d54fe43143bc5c97dbeb0459061b04defddb3ac0d5336f3833a6c3a949",
+   "file": "농업기술길잡이120_장미.PDF",
+   "title": "Roses",
+   "source": "농업기술길잡이 120 장미",
+   "language": "ko",
+   "format": "pdf",
+   "text": "scanned"
+  },
+  {
+   "sha256": "3df59afd78f8eed14c43516909ecbae60a95f32d5db655590a583f22db22d8d7",
+   "file": "농업기술길잡이214_무화과.PDF",
+   "title": "Figs",
+   "source": "농업기술길잡이 214 무화과",
+   "language": "ko",
+   "format": "pdf",
+   "text": "mixed"
+  },
+  {
+   "sha256": "75369e86556472e4b7490547b1a34c9bb3ece559a314b402fa57f7ea4e7122c1",
+   "file": "농업기술길잡이219_올리브.PDF",
+   "title": "Olives",
+   "source": "농업기술길잡이 219 올리브",
+   "language": "ko",
+   "format": "pdf",
+   "text": "mixed"
+  },
+  {
+   "sha256": "7cceba75a71b317b1e404eece5717a107380e45de1b042e79e0f23f713317e10",
+   "file": "pg12338-images-3.epub",
+   "title": "Contes d'une grand-mère — George Sand",
+   "source": "Project Gutenberg #12338",
+   "language": "fr",
+   "format": "epub",
+   "text": "ebook"
+  },
+  {
+   "sha256": "6e6bc9b0c6a480a9ab4664310356e3af43753d37ac7684a29e396bb346e3be45",
+   "file": "pg25513-images-3.epub",
+   "title": "Edmund Dulac's Fairy-Book",
+   "source": "Project Gutenberg #25513",
+   "language": "en",
+   "format": "epub",
+   "text": "ebook"
+  },
+  {
+   "sha256": "3492163548a2c4ccd50f08155a759862ec60c43e7990be73723aa449db091f0c",
+   "file": "pg2853-images-3.epub",
+   "title": "Quo Vadis — Henryk Sienkiewicz",
+   "source": "Project Gutenberg #2853",
+   "language": "en",
+   "format": "epub",
+   "text": "ebook"
+  },
+  {
+   "sha256": "8509c4a7299c86f5f891123e8bbdbf21bd8dd9907f61724f987562fb2fd523a1",
+   "file": "pg79886-images-3.epub",
+   "title": "A Vision of Venus — Otis Adelbert Kline",
+   "source": "Project Gutenberg #79886",
+   "language": "en",
+   "format": "epub",
+   "text": "ebook"
+  }
+ ],
+ "pdf_pages": 2018,
+ "characters": 3277734,
+ "languages_by_characters": {
+  "en": 1554613,
+  "ko": 1408643,
+  "fr": 287250,
+  "und": 14013,
+  "id": 1375,
+  "pl": 790,
+  "tr": 256,
+  "pt": 222
+ }
+}

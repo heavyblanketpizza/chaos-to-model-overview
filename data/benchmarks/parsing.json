@@ -1,0 +1,518 @@
+{
+ "description": "Text extracted from the same 12 files by each pipeline, measured by the comparison harness. Counts describe output, not OCR accuracy.",
+ "korean_pdf_totals": {
+  "c2m": {
+   "korean_pdfs_read": 8,
+   "table_rows": 6727,
+   "page_number_lines": 164,
+   "replacement_chars": 0,
+   "broken_words_per_1k_hangul": 0.0
+  },
+  "unsloth": {
+   "korean_pdfs_read": 7,
+   "table_rows": 4622,
+   "page_number_lines": 1112,
+   "replacement_chars": 0,
+   "broken_words_per_1k_hangul": 0.0
+  },
+  "curator": {
+   "korean_pdfs_read": 7,
+   "table_rows": 0,
+   "page_number_lines": 1734,
+   "replacement_chars": 422,
+   "broken_words_per_1k_hangul": 25.7
+  }
+ },
+ "scanned_rose_guide": {
+  "title": "농업기술길잡이 120 장미 (Roses)",
+  "sha256": "6a5066d54fe43143bc5c97dbeb0459061b04defddb3ac0d5336f3833a6c3a949",
+  "pages": 310,
+  "c2m": {
+   "chars": 203577,
+   "hangul": 109845,
+   "table_rows": 1230
+  },
+  "unsloth": {
+   "refused": true,
+   "reason": "37 pages flagged for OCR; the recipe's upload limit is 20 OCR pages"
+  },
+  "curator": {
+   "chars": 309,
+   "hangul": 0,
+   "note": "pypdfium2 text-layer path; the GPU parser was not run"
+  }
+ },
+ "ocr_diagnostic_pages": {
+  "pages": 28,
+  "c2m_hangul": 4337,
+  "c2m_latin": 233,
+  "unsloth_hangul": 162,
+  "unsloth_latin": 4164,
+  "curator_hangul": 162,
+  "note": "The pages Unsloth's extractor sends to OCR: 20 from the rose guide and 8 from the olive guide. Its Tesseract default language is English."
+ },
+ "escalation": {
+  "pages_escalated": 59,
+  "pages_awaiting_review": 24,
+  "note": "Pages c2m re-read with vision OCR; disagreements are kept for human review and left out of exports."
+ },
+ "documents": [
+  {
+   "sha256": "649705b11c490a8212c6815d57b614804530724ea6557b3a6693a4f9eaa62a87",
+   "title": "Greenhouse fruit growing",
+   "format": "pdf",
+   "c2m": {
+    "chars": 285003,
+    "hangul": 174021,
+    "latin": 4601,
+    "replacement": 0,
+    "table_rows": 624,
+    "page_number_lines": 3,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.028
+   },
+   "unsloth": {
+    "chars": 306282,
+    "hangul": 176650,
+    "latin": 11414,
+    "replacement": 0,
+    "table_rows": 569,
+    "page_number_lines": 460,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.049,
+    "c2m_in": 0.98,
+    "in_c2m": 0.943
+   },
+   "curator": {
+    "chars": 287303,
+    "hangul": 178314,
+    "latin": 4676,
+    "replacement": 193,
+    "table_rows": 0,
+    "page_number_lines": 473,
+    "wraps_per_1k_hangul": 22.4,
+    "repeated_line_share": 0.035,
+    "c2m_in": 0.986,
+    "in_c2m": 0.97
+   }
+  },
+  {
+   "sha256": "ddf21ce3df6f89710114b95dd7b9780d601fb38f61543116c6cda17a35ceb45d",
+   "title": "Home kitchen gardens",
+   "format": "pdf",
+   "c2m": {
+    "chars": 141578,
+    "hangul": 82554,
+    "latin": 2609,
+    "replacement": 0,
+    "table_rows": 1000,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.035
+   },
+   "unsloth": {
+    "chars": 152389,
+    "hangul": 83992,
+    "latin": 8520,
+    "replacement": 0,
+    "table_rows": 969,
+    "page_number_lines": 225,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.049,
+    "c2m_in": 0.929,
+    "in_c2m": 0.877
+   },
+   "curator": {
+    "chars": 135365,
+    "hangul": 84913,
+    "latin": 2617,
+    "replacement": 75,
+    "table_rows": 0,
+    "page_number_lines": 228,
+    "wraps_per_1k_hangul": 26.3,
+    "repeated_line_share": 0.05,
+    "c2m_in": 0.98,
+    "in_c2m": 0.968
+   }
+  },
+  {
+   "sha256": "a95583eb31e3b59fc0dc9b94fc0385b190a147788fc3f9d1d76f6093b20c9c68",
+   "title": "Pollinating bees",
+   "format": "pdf",
+   "c2m": {
+    "chars": 102410,
+    "hangul": 53187,
+    "latin": 2726,
+    "replacement": 0,
+    "table_rows": 459,
+    "page_number_lines": 2,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.034
+   },
+   "unsloth": {
+    "chars": 119866,
+    "hangul": 55672,
+    "latin": 8606,
+    "replacement": 0,
+    "table_rows": 444,
+    "page_number_lines": 182,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.062,
+    "c2m_in": 0.961,
+    "in_c2m": 0.874
+   },
+   "curator": {
+    "chars": 105606,
+    "hangul": 56562,
+    "latin": 2887,
+    "replacement": 154,
+    "table_rows": 0,
+    "page_number_lines": 387,
+    "wraps_per_1k_hangul": 24.0,
+    "repeated_line_share": 0.059,
+    "c2m_in": 0.974,
+    "in_c2m": 0.925
+   }
+  },
+  {
+   "sha256": "70a46a767fd4cadd2b5b3a9470bb0b6cb4677742e7dfea2c0ef7d6b023ff1c7f",
+   "title": "Tomato (low-resolution copy)",
+   "format": "pdf",
+   "c2m": {
+    "chars": 247927,
+    "hangul": 143622,
+    "latin": 5092,
+    "replacement": 0,
+    "table_rows": 913,
+    "page_number_lines": 66,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.02
+   },
+   "unsloth": {
+    "chars": 289098,
+    "hangul": 148039,
+    "latin": 21592,
+    "replacement": 0,
+    "table_rows": 1129,
+    "page_number_lines": 1,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.044,
+    "c2m_in": 0.915,
+    "in_c2m": 0.855
+   },
+   "curator": {
+    "chars": 253210,
+    "hangul": 150598,
+    "latin": 7313,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 337,
+    "wraps_per_1k_hangul": 22.1,
+    "repeated_line_share": 0.011,
+    "c2m_in": 0.973,
+    "in_c2m": 0.95
+   }
+  },
+  {
+   "sha256": "f8beadcf09130276b801f2551492642042443da34815643112ef8a18c58eb60f",
+   "title": "Beekeeping",
+   "format": "pdf",
+   "c2m": {
+    "chars": 167869,
+    "hangul": 101752,
+    "latin": 4337,
+    "replacement": 0,
+    "table_rows": 359,
+    "page_number_lines": 3,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.003
+   },
+   "unsloth": {
+    "chars": 186545,
+    "hangul": 104032,
+    "latin": 10703,
+    "replacement": 0,
+    "table_rows": 399,
+    "page_number_lines": 235,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.036,
+    "c2m_in": 0.974,
+    "in_c2m": 0.935
+   },
+   "curator": {
+    "chars": 168806,
+    "hangul": 103885,
+    "latin": 4453,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 30,
+    "wraps_per_1k_hangul": 21.1,
+    "repeated_line_share": 0.001,
+    "c2m_in": 0.982,
+    "in_c2m": 0.97
+   }
+  },
+  {
+   "sha256": "7cceba75a71b317b1e404eece5717a107380e45de1b042e79e0f23f713317e10",
+   "title": "Contes d'une grand-mère — George Sand",
+   "format": "epub",
+   "c2m": {
+    "chars": 305569,
+    "hangul": 0,
+    "latin": 232608,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 1,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.0
+   },
+   "unsloth": {
+    "chars": 305770,
+    "hangul": 0,
+    "latin": 233808,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 1,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.0,
+    "c2m_in": 1.0,
+    "in_c2m": 0.996
+   },
+   "curator": {
+    "chars": 308383,
+    "hangul": 0,
+    "latin": 233808,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 1,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.002,
+    "c2m_in": 1.0,
+    "in_c2m": 0.996
+   }
+  },
+  {
+   "sha256": "6e6bc9b0c6a480a9ab4664310356e3af43753d37ac7684a29e396bb346e3be45",
+   "title": "Edmund Dulac's Fairy-Book",
+   "format": "epub",
+   "c2m": {
+    "chars": 332421,
+    "hangul": 0,
+    "latin": 257482,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 46,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.005
+   },
+   "unsloth": {
+    "chars": 331859,
+    "hangul": 0,
+    "latin": 258398,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.008,
+    "c2m_in": 0.999,
+    "in_c2m": 0.997
+   },
+   "curator": {
+    "chars": 336380,
+    "hangul": 0,
+    "latin": 258398,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 46,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.01,
+    "c2m_in": 0.999,
+    "in_c2m": 0.997
+   }
+  },
+  {
+   "sha256": "3492163548a2c4ccd50f08155a759862ec60c43e7990be73723aa449db091f0c",
+   "title": "Quo Vadis — Henryk Sienkiewicz",
+   "format": "epub",
+   "c2m": {
+    "chars": 1180302,
+    "hangul": 0,
+    "latin": 921768,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.0
+   },
+   "unsloth": {
+    "chars": 1177958,
+    "hangul": 0,
+    "latin": 923031,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.001,
+    "c2m_in": 1.0,
+    "in_c2m": 0.999
+   },
+   "curator": {
+    "chars": 1320512,
+    "hangul": 0,
+    "latin": 923031,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.001,
+    "c2m_in": 1.0,
+    "in_c2m": 0.999
+   }
+  },
+  {
+   "sha256": "8509c4a7299c86f5f891123e8bbdbf21bd8dd9907f61724f987562fb2fd523a1",
+   "title": "A Vision of Venus — Otis Adelbert Kline",
+   "format": "epub",
+   "c2m": {
+    "chars": 31142,
+    "hangul": 0,
+    "latin": 24744,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 4,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.004
+   },
+   "unsloth": {
+    "chars": 32364,
+    "hangul": 0,
+    "latin": 25890,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.0,
+    "c2m_in": 1.0,
+    "in_c2m": 0.974
+   },
+   "curator": {
+    "chars": 32992,
+    "hangul": 0,
+    "latin": 25890,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 4,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.004,
+    "c2m_in": 1.0,
+    "in_c2m": 0.974
+   }
+  },
+  {
+   "sha256": "6a5066d54fe43143bc5c97dbeb0459061b04defddb3ac0d5336f3833a6c3a949",
+   "title": "Roses",
+   "format": "pdf",
+   "c2m": {
+    "chars": 203577,
+    "hangul": 109845,
+    "latin": 7329,
+    "replacement": 0,
+    "table_rows": 1230,
+    "page_number_lines": 18,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.016
+   },
+   "unsloth": {},
+   "curator": {
+    "chars": 309,
+    "hangul": 0,
+    "latin": 0,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 0,
+    "wraps_per_1k_hangul": null,
+    "repeated_line_share": 0.0,
+    "c2m_in": 0.0,
+    "in_c2m": null
+   }
+  },
+  {
+   "sha256": "3df59afd78f8eed14c43516909ecbae60a95f32d5db655590a583f22db22d8d7",
+   "title": "Figs",
+   "format": "pdf",
+   "c2m": {
+    "chars": 186309,
+    "hangul": 110430,
+    "latin": 3133,
+    "replacement": 0,
+    "table_rows": 507,
+    "page_number_lines": 58,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.013
+   },
+   "unsloth": {
+    "chars": 229566,
+    "hangul": 115807,
+    "latin": 19468,
+    "replacement": 0,
+    "table_rows": 519,
+    "page_number_lines": 1,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.048,
+    "c2m_in": 0.928,
+    "in_c2m": 0.841
+   },
+   "curator": {
+    "chars": 209569,
+    "hangul": 120639,
+    "latin": 4439,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 227,
+    "wraps_per_1k_hangul": 24.0,
+    "repeated_line_share": 0.007,
+    "c2m_in": 0.962,
+    "in_c2m": 0.907
+   }
+  },
+  {
+   "sha256": "75369e86556472e4b7490547b1a34c9bb3ece559a314b402fa57f7ea4e7122c1",
+   "title": "Olives",
+   "format": "pdf",
+   "c2m": {
+    "chars": 93627,
+    "hangul": 39188,
+    "latin": 1911,
+    "replacement": 0,
+    "table_rows": 1635,
+    "page_number_lines": 14,
+    "wraps_per_1k_hangul": 0.0,
+    "repeated_line_share": 0.031
+   },
+   "unsloth": {
+    "chars": 91471,
+    "hangul": 40866,
+    "latin": 6088,
+    "replacement": 0,
+    "table_rows": 593,
+    "page_number_lines": 8,
+    "wraps_per_1k_hangul": 0.1,
+    "repeated_line_share": 0.039,
+    "c2m_in": 0.786,
+    "in_c2m": 0.725
+   },
+   "curator": {
+    "chars": 79025,
+    "hangul": 40702,
+    "latin": 1985,
+    "replacement": 0,
+    "table_rows": 0,
+    "page_number_lines": 52,
+    "wraps_per_1k_hangul": 70.5,
+    "repeated_line_share": 0.02,
+    "c2m_in": 0.651,
+    "in_c2m": 0.625
+   }
+  }
+ ]
+}

@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chaos-to-Model</title>
+<meta name="description" content="A local data engine for Apple Silicon that turns private documents into training data you can trace back to the page. Demos, concept animations and benchmarks against Unsloth Data Recipes and NeMo Curator.">
+<meta property="og:title" content="Chaos-to-Model">
+<meta property="og:description" content="Private documents in. Training data you can trace out. Demos and benchmarks against Unsloth Data Recipes and NeMo Curator.">
+<meta property="og:image" content="https://heavyblanketpizza.github.io/chaos-to-model-overview/assets/brand/social.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0b0b'/%3E%3Crect x='7' y='9' width='10' height='3' rx='1.5' fill='%23f4f1e8'/%3E%3Crect x='19' y='9' width='6' height='3' rx='1.5' fill='%23f4f1e8'/%3E%3Crect x='7' y='15' width='10' height='3' rx='1.5' fill='%237a776f'/%3E%3Crect x='19' y='15' width='6' height='3' rx='1.5' fill='%232c63ff'/%3E%3Crect x='7' y='21' width='10' height='3' rx='1.5' fill='%237a776f'/%3E%3Crect x='19' y='21' width='6' height='3' rx='1.5' fill='%237a776f'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --paper: #f4f1e8;
+  --surface: #fffdf8;
+  --raised: #fbfaf6;
+  --ink: #0b0b0b;
+  --ink-2: #55524a;
+  --muted: #7a766c;
+  --line: #e2ddd0;
+  --accent: #2c63ff;
+  --accent-ink: #1d47c4;
+  --accent-wash: #e8eeff;
+  --shadow: 0 1px 2px rgba(20, 18, 10, .06), 0 12px 32px -12px rgba(20, 18, 10, .16);
+  --display: "Bricolage Grotesque", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sans: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0b0b0b;
+    --surface: #141414;
+    --raised: #181816;
+    --ink: #f4f1e8;
+    --ink-2: #c6c1b4;
+    --muted: #8f8a7e;
+    --line: #2a2926;
+    --accent: #5b84ff;
+    --accent-ink: #a9bdff;
+    --accent-wash: #1b2547;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 16px 40px -16px rgba(0, 0, 0, .7);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0b0b0b; --surface: #141414; --raised: #181816; --ink: #f4f1e8; --ink-2: #c6c1b4; --muted: #8f8a7e;
+  --line: #2a2926; --accent: #5b84ff; --accent-ink: #a9bdff; --accent-wash: #1b2547;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 16px 40px -16px rgba(0, 0, 0, .7);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font: 400 17px/1.6 var(--sans); letter-spacing: -0.005em;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+img, video, picture { display: block; max-width: 100%; }
+a { color: inherit; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+.wrap { width: min(1080px, 100% - 48px); margin-inline: auto; }
+@media (max-width: 640px) { .wrap { width: calc(100% - 32px); } body { font-size: 16px; } }
+
+/* Top bar */
+.bar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+.bar.scrolled { border-bottom-color: var(--line); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+.brand { font: 700 19px/1 var(--display); letter-spacing: -0.02em; text-decoration: none; white-space: nowrap; }
+.nav { display: flex; gap: 4px; font-size: 14.5px; font-weight: 500; }
+.nav a { text-decoration: none; color: var(--ink-2); padding: 7px 11px; border-radius: 999px; }
+.nav a:hover { color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.nav a.cta { color: var(--paper); background: var(--ink); }
+.nav a.cta:hover { background: color-mix(in srgb, var(--ink) 86%, var(--paper)); }
+@media (max-width: 720px) { .nav a:not(.cta) { display: none; } }
+
+/* Hero */
+.hero { padding: 72px 0 40px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: var(--accent-ink); background: var(--accent-wash); padding: 6px 12px; border-radius: 999px; }
+.eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+h1 { font: 700 clamp(38px, 6.4vw, 72px)/1.02 var(--display); letter-spacing: -0.035em; margin: 22px 0 22px; max-width: 18ch; text-wrap: balance; }
+.lede { font-size: clamp(18px, 2.1vw, 21px); line-height: 1.55; color: var(--ink-2); max-width: 60ch; margin: 0; text-wrap: pretty; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; border: 1px solid var(--line); background: var(--surface); }
+.btn.primary { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.btn:hover { transform: translateY(-1px); }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: transform .15s; } }
+
+/* Sections */
+section { padding: 56px 0; }
+.kicker { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+h2 { font: 700 clamp(28px, 3.6vw, 40px)/1.1 var(--display); letter-spacing: -0.025em; margin: 0 0 14px; text-wrap: balance; }
+h3 { font-size: 18px; line-height: 1.35; margin: 0 0 6px; letter-spacing: -0.01em; }
+.intro { color: var(--ink-2); max-width: 64ch; margin: 0 0 32px; text-wrap: pretty; }
+.note { font-size: 14px; line-height: 1.55; color: var(--muted); max-width: 72ch; margin: 14px 0 0; }
+
+/* Media frames */
+.frame { border-radius: 18px; overflow: hidden; background: #000; box-shadow: var(--shadow); border: 1px solid var(--line); }
+.frame video { width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; }
+.films { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+@media (max-width: 760px) { .films { grid-template-columns: 1fr; } }
+.film h3 { margin-top: 16px; }
+.film p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+.meta { display: inline-block; font-size: 12.5px; font-weight: 600; color: var(--muted); margin-left: 6px; letter-spacing: 0; }
+
+/* Figures */
+figure { margin: 0; }
+.chart { margin: 0 0 28px; }
+.chart img { width: 100%; height: auto; }
+.chart figcaption { font-size: 14px; color: var(--muted); margin-top: 10px; max-width: 72ch; }
+
+/* Story */
+.story { display: grid; grid-template-columns: 1fr; gap: 20px; }
+
+/* Concept grid */
+.grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 24px; }
+@media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+.clip .frame { background: #fff; }
+.clip h3 { margin-top: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.clip p { margin: 0; color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+.chip { font: 600 11.5px/1 var(--sans); letter-spacing: .02em; padding: 5px 9px; border-radius: 999px; white-space: nowrap; }
+.chip.shipped { color: var(--accent-ink); background: var(--accent-wash); }
+.chip.mixed { color: var(--ink-2); background: color-mix(in srgb, var(--ink) 8%, transparent); }
+.chip.roadmap { color: var(--muted); background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+.legend { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; font-size: 14px; color: var(--ink-2); margin: -12px 0 28px; }
+
+/* Numbers */
+.callouts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 4px 0 36px; }
+@media (max-width: 760px) { .callouts { grid-template-columns: 1fr; } }
+.callout { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; }
+.callout b { display: block; font: 700 30px/1.1 var(--display); letter-spacing: -0.02em; margin-bottom: 6px; }
+.callout span { font-size: 14.5px; color: var(--ink-2); line-height: 1.5; display: block; }
+.honest { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px; margin-top: 8px; }
+.honest h3 { margin-bottom: 10px; }
+.honest ul { margin: 0; padding-left: 20px; color: var(--ink-2); }
+.honest li { margin: 6px 0; }
+
+footer { border-top: 1px solid var(--line); padding: 36px 0 56px; color: var(--muted); font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+</head>
+<body>
+<header class="bar" id="bar">
+  <div class="wrap">
+    <a class="brand" href="#top">Chaos-to-Model</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#demos">Demos</a>
+      <a href="#concept">Concept</a>
+      <a href="#results">Results</a>
+      <a class="cta" href="https://github.com/heavyblanketpizza/chaos-to-model-overview">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <span class="eyebrow">Private pilot · Apple Silicon</span>
+    <h1>Private documents&nbsp;in.<br> Training data you can trace&nbsp;out.</h1>
+    <p class="lede">Chaos-to-Model turns a folder of PDFs, scans, ebooks and office files into training data on one Mac. Every row keeps its source file, its page and the box on that page, so a generated answer can be traced to the passage it came from.</p>
+    <div class="actions">
+      <a class="btn primary" href="#demos">Watch the demos</a>
+      <a class="btn" href="https://github.com/heavyblanketpizza/chaos-to-model-overview/blob/main/docs/benchmarks.md">Read the benchmark</a>
+    </div>
+  </div>
+
+  <section id="demos">
+    <div class="wrap">
+      <p class="kicker">Demos</p>
+      <h2 id="live">A real session, start to finish</h2>
+      <p class="intro">A two-page Korean scan is parsed, its table opens beside the source page, three pipelines are compared on the same file, and the signed export is verified. Recorded at 2× in a demo console that drives the engine.</p>
+      <div class="frame">
+        <video id="hero-video" muted loop playsinline preload="metadata" poster="assets/films/live-session.jpg" aria-label="Terminal session: parsing a Korean scan and verifying a signed export">
+          <source src="media/films/live-session.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="note">The parse, the table, its source box and the signature check are live output. The recipe comparison reads the recorded benchmark runs.</p>
+
+      <div class="films">
+        <article class="film" id="story">
+          <div class="frame">
+            <video controls playsinline preload="none" poster="assets/films/model-ready.jpg">
+              <source src="media/films/model-ready.mp4" type="video/mp4">
+              <track kind="captions" src="media/films/model-ready.en.vtt" srclang="en" label="English">
+            </video>
+          </div>
+          <h3>Follow one number <span class="meta">56 s · narrated</span></h3>
+          <p>The number 247 from a scanned rose guide to a signed training set, with the benchmark results in between. Opens and closes on concept animations.</p>
+        </article>
+        <article class="film" id="walkthrough">
+          <div class="frame">
+            <video controls playsinline preload="none" poster="assets/films/walkthrough.jpg">
+              <source src="media/films/walkthrough.mp4" type="video/mp4">
+              <track kind="captions" src="media/films/walkthrough.en.vtt" srclang="en" label="English">
+            </video>
+          </div>
+          <h3>Evidence walkthrough <span class="meta">60 s · captioned</span></h3>
+          <p>Eight chapters over a frozen snapshot of the workspace, from inbox to verified export, in a read-only viewer built for the film.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="kicker">At a glance</p>
+      <h2>Same files. Same teacher. Different results.</h2>
+      <p class="intro">Twelve files, matched by SHA-256: eight Korean agricultural guides and four Project Gutenberg books. Each pipeline used the same local teacher model.</p>
+      <figure class="chart">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/charts/kpis-dark.svg">
+          <img src="assets/charts/kpis-light.svg" width="880" height="248" alt="A scanned 310-page guide: c2m extracted 203,577 characters, Unsloth refused it, NeMo Curator extracted 309. On 28 scanned pages c2m read 4,337 Korean characters against 162 for each baseline. In 8 Korean PDFs c2m kept 6,727 table rows against 4,622 and 0. All of c2m's questions are in the passage's language, against 92.6% and 29.7%.">
+        </picture>
+        <figcaption>Counts describe extracted output, not accuracy.</figcaption>
+      </figure>
+      <figure class="chart story">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/charts/story-dark.svg">
+          <img src="assets/charts/story-light.svg" width="880" height="806" loading="lazy" alt="Follow one number: page 14 of a scanned rose guide shows 247 hectares in 2019; c2m parses the table and keeps the file hash, page and box; a training question cites the glossary on page 301; the export is signed and verifies.">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <section id="concept">
+    <div class="wrap">
+      <p class="kicker">Concept</p>
+      <h2>How it works, in eleven animations</h2>
+      <p class="intro">Made for c2m's slides in August and September 2026. Some show where the product is going, so each one says what exists today.</p>
+      <div class="legend" aria-label="Status legend">
+        <span><span class="chip shipped">Shipped</span> in the current engine</span>
+        <span><span class="chip mixed">Partly shipped</span> some layers built</span>
+        <span><span class="chip roadmap">Roadmap</span> planned, not built</span>
+      </div>
+      <div class="grid" id="clips"></div>
+    </div>
+  </section>
+
+  <section id="results">
+    <div class="wrap">
+      <p class="kicker">Results</p>
+      <h2>Benchmarked against Unsloth Data Recipes and NeMo Curator</h2>
+      <p class="intro">Unsloth ran its PDF Document QA recipe at a pinned Studio commit; NeMo Curator ran its Nemotron-CC recipes at v1.4.0. Every change from the upstream recipes is recorded in the <a href="https://github.com/heavyblanketpizza/chaos-to-model-overview/blob/main/docs/benchmarks.md">full report</a>.</p>
+
+      <div class="callouts">
+        <div class="callout"><b>+4.8 pts</b><span>exact-match answers over NeMo Curator, 95% interval +0.2 to +9.4, from 377 training rows against 1,396</span></div>
+        <div class="callout"><b>Pre-registered</b><span>evaluation protocol committed before any run, its hash recorded in the run manifest</span></div>
+        <div class="callout"><b>5 of 6 folds</b><span>scored so far; the rest are reported when they finish, whatever they show</span></div>
+      </div>
+
+      <figure class="chart"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/charts/scans-dark.svg"><img src="assets/charts/scans-light.svg" width="880" height="340" loading="lazy" alt="Scanned 310-page guide: c2m 203,577 characters, Unsloth refused, NeMo Curator 309. Hangul on 28 scanned pages: c2m 4,337, Unsloth 162, NeMo Curator 162."></picture></figure>
+      <figure class="chart"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/charts/structure-dark.svg"><img src="assets/charts/structure-light.svg" width="880" height="512" loading="lazy" alt="Eight Korean PDFs. Table rows kept: 6,727, 4,622, 0. Page-number lines: 164, 1,112, 1,734. Split words per 1,000 Hangul: 0.0, 0.0, 25.7. Replacement characters: 0, 0, 422."></picture></figure>
+      <figure class="chart"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/charts/datasets-dark.svg"><img src="assets/charts/datasets-light.svg" width="880" height="512" loading="lazy" alt="Questions in the passage's language: 100%, 92.6%, 29.7%. Rephrases in the source language: 100% and 39.1%. Numbers kept: 89% and 57.1%. Abstention examples: 35, 0, 0."></picture></figure>
+      <figure class="chart"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/charts/proxy-scores-dark.svg"><img src="assets/charts/proxy-scores-light.svg" width="880" height="452" loading="lazy" alt="Student scores with 95% intervals: contains the answer 64.1%, 61.1%, 61.7%, untuned 74.3%; exact match 46.7%, 43.7%, 41.9%, untuned 27.5%; log-likelihood −0.41, −0.53, −0.24, untuned −1.05."></picture></figure>
+      <figure class="chart"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/charts/proxy-diffs-dark.svg"><img src="assets/charts/proxy-diffs-light.svg" width="880" height="552" loading="lazy" alt="Paired differences, c2m minus each baseline, with 95% intervals, for all questions and by question source."></picture></figure>
+
+      <div class="honest">
+        <h3>Where c2m does not lead</h3>
+        <ul>
+          <li>On the pre-registered primary score, "contains the answer", no tuned set separates from another, and the untuned student scores highest because it answers at length.</li>
+          <li>NeMo Curator's students give the gold answer the highest likelihood, clearly ahead of c2m.</li>
+          <li>c2m's set includes short-answer rows that match the evaluation's reply format. An earlier single split, run before those rows existed, favoured Unsloth on exact match.</li>
+          <li>Character and table counts describe output, not accuracy. NeMo Curator ran without its GPU parser; Unsloth ran with its default OCR language and page limit.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Built by Juha Chung at <a href="https://www.westofthesun.com">West of the Sun</a> (태양의서쪽), Korea.</span>
+    <span>Guide pages: Rural Development Administration (농촌진흥청). Ebooks: Project Gutenberg.</span>
+  </div>
+</footer>
+
+<script>
+const CLIPS = [
+  ["01-architecture", "Architecture", "mixed", "The full vision. The document path from parsing to validated datasets and evaluation is built; audio and video inputs, steering vectors, multilingual augmentation and cluster compute are planned."],
+  ["02-ingestion", "Ingestion", "mixed", "Sandboxed document parsing keyed by SHA-256 into a manifest is built. Audio transcription and video keyframes are planned."],
+  ["03-naive-extraction", "Naive extraction", null, "The problem c2m exists to solve: text pulled straight from PDF bytes loses layout, and with it meaning."],
+  ["04-structure-aware", "Structure-aware reading", "shipped", "The page becomes a structured document whose headings, sections and tables keep their place."],
+  ["05-deduplication", "Layered deduplication", "mixed", "Exact and near-duplicate layers are built. Semantic deduplication by embedding similarity is planned."],
+  ["06-dataset-layers", "Three dataset layers", "mixed", "Pretraining text and instruction sets are built. Steering vectors are planned."],
+  ["07-pretraining-corpora", "Pretraining corpora", "mixed", "Structure-aware chunks and model-written figure descriptions are built. Interleaved image tokens are planned."],
+  ["08-sft-datasets", "Fine-tuning sets", "shipped", "An illustration of where instruction data leads: domain knowledge with a voice. SFT, preference and RL sets are built."],
+  ["09-sft-synthesis", "Grounded synthesis", "shipped", "Candidates are mined from passages, checked against their evidence, and written as SFT and preference sets."],
+  ["10-steering-vectors", "Steering vectors", "roadmap", "Contrastive response pairs as a third dataset layer, for behaviour control at inference."],
+  ["11-vector-anatomy", "Anatomy of a steering vector", "roadmap", "The mean difference of hidden states between contrastive completions."],
+];
+const LABEL = { shipped: "Shipped", mixed: "Partly shipped", roadmap: "Roadmap" };
+const grid = document.getElementById("clips");
+for (const [id, title, status, text] of CLIPS) {
+  const n = id.slice(0, 2);
+  const el = document.createElement("article");
+  el.className = "clip";
+  el.id = "clip-" + n;
+  el.innerHTML = `<div class="frame"><video muted loop playsinline preload="none" poster="assets/clips/${id}.jpg" aria-label="${title} animation"><source src="media/clips/${id}.mp4" type="video/mp4"></video></div>
+    <h3>${title}${status ? ` <span class="chip ${status}">${LABEL[status]}</span>` : ""}</h3><p>${text}</p>`;
+  grid.append(el);
+}
+
+// Play muted loops only while they are on screen, and never for viewers who ask for less motion.
+const still = matchMedia("(prefers-reduced-motion: reduce)");
+const loops = [document.getElementById("hero-video"), ...grid.querySelectorAll("video")];
+if (still.matches) {
+  loops.forEach((v) => (v.controls = true));
+} else if ("IntersectionObserver" in window) {
+  const seen = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) e.target.play().catch(() => (e.target.controls = true));
+      else e.target.pause();
+    }
+  }, { threshold: 0.5 });
+  loops.forEach((v) => seen.observe(v));
+}
+
+const bar = document.getElementById("bar");
+addEventListener("scroll", () => bar.classList.toggle("scrolled", scrollY > 8), { passive: true });
+</script>
+</body>
+</html>
