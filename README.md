@@ -79,6 +79,15 @@ c2m makes that path one local workflow: read the documents faithfully, apply the
 
 All eleven concept animations, each marked shipped or roadmap, are in [docs/how-it-works.md](docs/how-it-works.md).
 
+### Architecture: built and planned
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/charts/architecture-dark.png">
+  <img alt="The architecture in November 2026. Control plane: a runner (c2m run), a store (Lance and DuckDB) and compute on a Mac plus Runpod pods with open models, in place of the original sketch's Prefect or Dagster, Postgres and Ray or Spark. Data plane: PDF, EPUB, office, text and image files go through extract and parse with vision-model readers, a canonical representation that keeps the page and box of every row, normalize, layered dedup, synthesis in each document's own language, validation by checks and a judge, then a pretraining corpus, an SFT set and preference and RL sets, evaluation by a proxy loop, and a registry of signed bundles. Planned: a quality score, repeating the best works, reasoning recipes, checks by the student model, delta preference pairs and KTO, and new training arms. Dropped from the sketch: audio and video, and the steering-vector builder. Next, in order: Linux checks, judge labels, quality score, reasoning recipes, A/B tests, the student in the loop, page-image QA." src="assets/charts/architecture-light.png" width="880">
+</picture>
+
+<sub>Solid boxes are built and dashed boxes are planned, as of November 5, 2026. Struck-out grey labels were in the original sketch and were dropped: steering vectors lost to plain prompting in controlled tests, and a cluster stack is the wrong size for one Mac.</sub>
+
 ## Follow one number
 
 <picture>
